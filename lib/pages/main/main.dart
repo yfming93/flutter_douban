@@ -9,6 +9,7 @@ class FMMainPage extends StatefulWidget {
 
 class _FMMainPageState extends State<FMMainPage> {
   int _currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,14 +25,12 @@ class _FMMainPageState extends State<FMMainPage> {
         selectedFontSize: 15,
         unselectedFontSize: 15,
         items: items,
-        onTap: (index){
-            setState(() {
-              _currentIndex = index;
-            });
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
         },
       ),
     );
   }
 }
-
-

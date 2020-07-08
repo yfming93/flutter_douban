@@ -7,9 +7,20 @@ class FMHomeContent extends StatefulWidget {
 
 class _FMHomeContentState extends State<FMHomeContent> {
   @override
+  void initState() {
+    super.initState();
+
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text("首页",style: TextStyle(color: Colors.green, fontSize: 30),),
+      child: ListView.builder(
+        itemCount: 30,
+        itemBuilder:(ctx,index){
+          return ListTile(title: Text("data"),);
+        } ,
+      ),
     );
   }
 }
