@@ -15,8 +15,8 @@ List<FMBottomBarItem> items = [
 List<Widget> pages = [
   FMHomePage(),
   FMSubjectPage(),
-  FMHomePage(),
-  FMHomePage(),
-  FMHomePage(),
-  FMHomePage(),
+  FMSubjectPage(),
+  FMSubjectPage(),
+  FMSubjectPage(),
+  FMSubjectPage(),
 ];
