@@ -110,14 +110,14 @@ class FMHomeMovieItem extends StatelessWidget {
         color: Colors.redAccent,
         size: 24,
       ),
-        alignment: PlaceholderAlignment.bottom
+//        baseline: TextBaseline.ideographic,
+//        alignment: PlaceholderAlignment.middle
       ),
-      TextSpan(
-          text: movie.title,
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-      TextSpan(
-          text: "(${movie.playDate})",
-          style: TextStyle(fontSize: 16, color: Colors.grey)),
+      WidgetSpan(
+          child: Text(movie.title,style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+          ),
+      WidgetSpan(
+          child: Text("(${movie.playDate})",style: TextStyle(fontSize: 16, color: Colors.grey))),
     ]));
   }
 
