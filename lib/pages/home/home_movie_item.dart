@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_douban/model/home_model.dart';
+import 'package:flutter_douban/utils/FMLog.dart';
 import 'package:flutter_douban/widgets/dashed_line.dart';
 import 'package:flutter_douban/widgets/star_rating.dart';
 
@@ -103,22 +104,31 @@ class FMHomeMovieItem extends StatelessWidget {
   }
 
   Widget buildContentInfoTitle() {
-    return Text.rich(TextSpan(children: [
-      WidgetSpan(
-          child: Icon(
-        Icons.play_circle_outline,
-        color: Colors.redAccent,
-        size: 24,
-      ),
-//        baseline: TextBaseline.ideographic,
-//        alignment: PlaceholderAlignment.middle
-      ),
-      WidgetSpan(
-          child: Text(movie.title,style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-          ),
-      WidgetSpan(
-          child: Text("(${movie.playDate})",style: TextStyle(fontSize: 16, color: Colors.grey))),
-    ]));
+    List<InlineSpan> spans = [];
+
+    spans.add(WidgetSpan(
+        child: Icon(
+          Icons.play_circle_outline,
+          color: Colors.redAccent,
+          size: 24,
+        ),
+        alignment: PlaceholderAlignment.middle));
+    spans.addAll(movie.title.runes.map((rune) {
+      return WidgetSpan(
+          child: Text(String.fromCharCode(rune),
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              )),
+          alignment: PlaceholderAlignment.middle);
+    }));
+
+    spans.add(WidgetSpan(
+        child: Text("(${movie.playDate})",
+            style: TextStyle(fontSize: 16, color: Colors.grey)),
+        alignment: PlaceholderAlignment.middle));
+
+    return Text.rich(TextSpan(children: spans));
   }
 
   Widget buildContentRate() {
@@ -143,6 +153,7 @@ class FMHomeMovieItem extends StatelessWidget {
     final genresString = movie.genres.join(" ");
     final directorString = movie.director.name;
     final castsString = movie.casts.map((item) => item.name).join(" ");
+    fmlog("message111", StackTrace.current);
     return Text(
       "$genresString / $directorString / $castsString",
       maxLines: 2,
